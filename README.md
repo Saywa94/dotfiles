@@ -10,7 +10,6 @@ ln -s ~/.dotfiles/nvim/init.lua ~/.config/nvim/init.lua
 ln -s ~/.dotfiles/nvim/lua/ ~/.config/nvim/
 ```
 For a new neovim installation:
-```bash
-ln -s ~/.dotfiles/nvim/ ~/.config/
-```
+`ln -s ~/.dotfiles/nvim/ ~/.config/`
 
+Then install packer and run `:PackerSync` inside neovim
