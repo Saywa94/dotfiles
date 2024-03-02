@@ -106,8 +106,6 @@ require('tokyonight').setup{
 local harpoon = require('harpoon')
 harpoon:setup({})
 
---require("luasnip").setup({})
---require('luasnip.loaders.from_vscode').lazy_load()
 local lsp_zero = require('lsp-zero')
 
 require('mason').setup({})
@@ -119,4 +117,20 @@ require('mason-lspconfig').setup({
 })
 
 vim.api.nvim_command('colorscheme tokyonight')
+
+local cmp = require('cmp')
+cmp.setup({
+    snippet = {
+      expand = function(args)
+        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    sources = cmp.config.sources({
+        { name = 'luasnip', max_item_count = 5 }, -- For luasnip users.
+        { name = 'nvim_lsp', max_item_count = 5 },
+        { name = 'buffer' },
+        { name = 'path' },
+    })
+    
+})
 

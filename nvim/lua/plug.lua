@@ -41,15 +41,27 @@ return require('packer').startup({
             branch = "harpoon2",
             requires = { {"nvim-lua/plenary.nvim"} }
         }
+
+        -- Autocompletion
+        use { 'hrsh7th/cmp-nvim-lsp' }
+        use { 'hrsh7th/cmp-buffer' }
+        use { 'hrsh7th/cmp-path' }
+        use { 'hrsh7th/cmp-cmdline' }
+        use { 'hrsh7th/nvim-cmp' }
+
         -- LSP zero
         use { 
             "L3MON4D3/LuaSnip", 
             tag = "v2.*", 
+            after = 'nvim-cmp',
+            --config = function() require('config.snippets') end,
             run = "make install_jsregexp",
             requires = {
                 {'rafamadriz/friendly-snippets'},
             }
         }
+        use { 'saadparwaiz1/cmp_luasnip' }
+
         use {
             'VonHeikemen/lsp-zero.nvim',
             branch = 'v3.x',
@@ -60,9 +72,6 @@ return require('packer').startup({
 
                 -- LSP Support
                 {'neovim/nvim-lspconfig'},
-                -- Autocompletion
-                {'hrsh7th/nvim-cmp'},
-                {'hrsh7th/cmp-nvim-lsp'},
             }
         }
 
