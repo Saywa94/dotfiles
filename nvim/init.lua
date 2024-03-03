@@ -29,6 +29,7 @@ require('lualine').setup {
     },
     sections = { 
         lualine_c = {
+            {'filename'},
             { 'codeium#GetStatusString', color = { fg = '#FFEB3B' } }
         } 
     }
