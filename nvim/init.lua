@@ -26,6 +26,11 @@ require('nvim-tree').setup {
 require('lualine').setup {
     options = {
         theme = 'dracula-nvim'
+    },
+    sections = { 
+        lualine_c = {
+            { 'codeium#GetStatusString', color = { fg = '#FFEB3B' } }
+        } 
     }
 }
 require('nvim-autopairs').setup{}
@@ -33,6 +38,7 @@ require('nvim-autopairs').setup{}
 require'nvim-treesitter.configs'.setup {
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
     ensure_installed = {
+        "markdown",
         "javascript",
         "typescript",
         "python",
@@ -117,6 +123,9 @@ require('mason-lspconfig').setup({
 })
 
 vim.api.nvim_command('colorscheme tokyonight')
+
+-- status bar for codeium
+vim.api.nvim_call_function("codeium#GetStatusString", {})
 
 local cmp = require('cmp')
 cmp.setup({

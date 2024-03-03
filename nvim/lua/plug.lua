@@ -74,6 +74,9 @@ return require('packer').startup({
                 {'neovim/nvim-lspconfig'},
             }
         }
+        
+        -- CODEIUM Autocompletion AI
+        use { 'Exafunction/codeium.vim' }
 
     end,
     config = {
