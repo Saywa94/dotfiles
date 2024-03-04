@@ -76,7 +76,12 @@ return require('packer').startup({
         }
         
         -- CODEIUM Autocompletion AI
-        use { 'Exafunction/codeium.vim' }
+        use { 
+            'Exafunction/codeium.vim',
+            config = function()
+                vim.keymap.set('i', '<S-Tab>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
+            end
+        }
 
     end,
     config = {
