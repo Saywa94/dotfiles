@@ -106,17 +106,18 @@ local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
   mapping = cmp.mapping.preset.insert({
-    -- Select next item
-    ['<C-i>'] = cmp.mapping.select_next_item(cmp_select),
+    -- Select next/previous item
+    ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
     -- `Enter` key to confirm completion
     ['<CR>'] = cmp.mapping.confirm({select = false}),
-
     -- Ctrl+Space to trigger completion menu
     ['<C-Space>'] = cmp.mapping.complete(),
 
     -- Scroll up and down in the completion documentation
     ['<C-u>'] = cmp.mapping.scroll_docs(-4),
     ['<C-d>'] = cmp.mapping.scroll_docs(4),
+
   })
 })
 

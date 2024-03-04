@@ -130,10 +130,13 @@ vim.api.nvim_call_function("codeium#GetStatusString", {})
 
 local cmp = require('cmp')
 cmp.setup({
+    completion = {
+        autocomplete = false
+    },
     snippet = {
-      expand = function(args)
-        require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-      end,
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+        end,
     },
     sources = cmp.config.sources({
         { name = 'luasnip', max_item_count = 5 }, -- For luasnip users.
