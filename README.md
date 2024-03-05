@@ -13,3 +13,7 @@ For a new neovim installation:
 `ln -s ~/.dotfiles/nvim/ ~/.config/`
 
 Then install packer and run `:PackerSync` inside neovim
+
+### Tmux
+
+`ln -s ~/.dotfiles/tmux/ ~/.config`
