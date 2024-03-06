@@ -123,8 +123,6 @@ require('mason-lspconfig').setup({
     },
 })
 
-vim.api.nvim_command('colorscheme tokyonight')
-
 -- status bar for codeium
 vim.api.nvim_call_function("codeium#GetStatusString", {})
 
@@ -147,3 +145,8 @@ cmp.setup({
     
 })
 
+-- Set colorscheme at the end to ensure transparency, after set line number colors
+vim.api.nvim_command('colorscheme tokyonight')
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#7E8082' })
+vim.api.nvim_set_hl(0, 'LineNr', { fg='#ece17f' })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#7E8082' })
