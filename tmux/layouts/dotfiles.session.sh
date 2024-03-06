@@ -17,7 +17,7 @@ if initialize_session "dotfiles"; then
   run_cmd "clear && ll && echo"" && glog"
 
   select_window 1
-  run_cmd "nvim README.md"
+  run_cmd "nvim"
 
 fi
 

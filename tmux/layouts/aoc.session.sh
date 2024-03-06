@@ -13,7 +13,7 @@ if initialize_session "aoc"; then
   run_cmd "cd source/2022"
 
   select_pane 1
-  run_cmd "nvim ."
+  run_cmd "nvim"
 
 fi
 

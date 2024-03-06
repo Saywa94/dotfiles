@@ -8,7 +8,7 @@ if initialize_session "tutecho_client"; then
 
   # Create a new window inline within session layout definition.
   new_window "editor"
-  run_cmd "nvim docker-compose.yml"
+  run_cmd "nvim"
 
   new_window "terminal"
   split_h 50
