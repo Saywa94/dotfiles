@@ -82,6 +82,8 @@ return require('packer').startup({
                 vim.keymap.set('i', '<S-Tab>', function() return vim.fn['codeium#CycleCompletions'](1) end, { expr = true })
             end
         }
+        -- Linter
+        use { 'dense-analysis/ale' }
 
     end,
     config = {

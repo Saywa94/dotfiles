@@ -27,11 +27,11 @@ require('lualine').setup {
     options = {
         theme = 'dracula-nvim'
     },
-    sections = { 
+    sections = {
         lualine_c = {
             {'filename'},
             { 'codeium#GetStatusString', color = { fg = '#FFEB3B' } }
-        } 
+        }
     }
 }
 require('nvim-autopairs').setup{}
@@ -142,7 +142,7 @@ cmp.setup({
         { name = 'buffer' },
         { name = 'path' },
     })
-    
+
 })
 
 -- Set colorscheme at the end to ensure transparency, after set line number colors
@@ -150,3 +150,34 @@ vim.api.nvim_command('colorscheme tokyonight')
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#7E8082' })
 vim.api.nvim_set_hl(0, 'LineNr', { fg='#ece17f' })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#7E8082' })
+
+-- Ale Linter config
+vim.g.ale_echo_msg_error_str = ''
+vim.g.ale_echo_msg_warning_str = ''
+vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
+vim.g.ale_linters_explicit = 1
+vim.g.on_text_changed = 'never'
+vim.g.on_insert_leave = 0
+vim.g.on_insert_enter = 0
+vim.g.ale_completion_enabled = 0
+vim.g.ale_completion_autoimport = 0
+vim.g.ale_go_to_definition = 0
+vim.g.ale_find_references = 0
+vim.g.ale_hover = 0
+vim.g.ale_hover_cursor = 0
+vim.g.ale_fix_on_save = 1
+vim.g.ale_lint_on_save = 1
+vim.g.linter_aliases = { ['tsx'] =  'typescript' }
+vim.g.ale_fixers = {
+    [ 'javascript' ] = 'prettier',
+    [ 'typescript' ] = 'prettier',
+    [ 'typescriptreact' ] = 'prettier',
+    [ 'tsx' ] = 'prettier',
+    [ 'css' ] = 'prettier',
+}
+vim.g.ale_linters = {
+    [ 'javascript' ] =  'eslint',
+    [ 'typescript' ] =  'eslint',
+    [ 'typescriptreact' ] = 'eslint',
+    [ 'tsx' ] =  'eslint',
+}
