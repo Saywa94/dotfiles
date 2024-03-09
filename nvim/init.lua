@@ -123,6 +123,20 @@ require('mason-lspconfig').setup({
     },
 })
 
+require('lspconfig').intelephense.setup({
+    settings = {
+        intelephense = {
+            files = {
+                maxSize = 5000000,
+                exclude = {
+                    'node_modules',
+                    'vendor',
+                }
+            }
+        }
+    }
+})
+
 -- status bar for codeium
 vim.api.nvim_call_function("codeium#GetStatusString", {})
 
