@@ -1,4 +1,4 @@
---[[ init.lua ]]
+-- [[ init.lua ]]
 
 -- Disable netrw for better nvim-tree integration
 vim.g.loaded_netrw = 1
@@ -164,6 +164,9 @@ vim.api.nvim_command('colorscheme tokyonight')
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#7E8082' })
 vim.api.nvim_set_hl(0, 'LineNr', { fg='#ece17f' })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#7E8082' })
+
+-- Comments
+require('Comment').setup()
 
 -- Ale Linter config
 vim.g.ale_echo_msg_error_str = ''

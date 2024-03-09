@@ -85,6 +85,14 @@ return require('packer').startup({
         -- Linter
         use { 'dense-analysis/ale' }
 
+        -- Comments
+        use {
+            'numToStr/Comment.nvim',
+            config = function()
+                require('Comment').setup()
+            end
+        }
+
     end,
     config = {
         package_root = vim.fn.stdpath('config') .. '/site/pack'

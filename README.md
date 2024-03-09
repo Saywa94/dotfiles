@@ -26,5 +26,4 @@ export PATH="$HOME/.tmuxifier/bin:$PATH"
 export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmux/layouts"
 ```
 When running and older version of tmux, pass the argument: `-f ~/.config/tmux/tmux.conf`.
-For tmufixier add this to .bashrc: `export TMUXIFIER_TMUX_OPTS="-f ~/.config/tmux/tmux.conf"`.
 
