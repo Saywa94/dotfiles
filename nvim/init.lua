@@ -172,7 +172,7 @@ require('Comment').setup()
 vim.g.ale_echo_msg_error_str = ''
 vim.g.ale_echo_msg_warning_str = ''
 vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
-vim.g.ale_linters_explicit = 1
+-- vim.g.ale_linters_explicit = 1
 vim.g.on_text_changed = 'never'
 vim.g.on_insert_leave = 0
 vim.g.on_insert_enter = 0
@@ -191,10 +191,12 @@ vim.g.ale_fixers = {
     [ 'typescriptreact' ] = 'prettier',
     [ 'tsx' ] = 'prettier',
     [ 'css' ] = 'prettier',
+    [ '*' ] = { 'remove_trailing_lines', 'trim_whitespace' },
 }
 vim.g.ale_linters = {
     [ 'javascript' ] =  'eslint',
     [ 'typescript' ] =  'eslint',
     [ 'typescriptreact' ] = 'eslint',
     [ 'tsx' ] =  'eslint',
+    [ 'php' ] = 'intelephense',
 }
