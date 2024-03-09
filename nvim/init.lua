@@ -98,7 +98,7 @@ require('gitsigns').setup{
 
     -- Actions
     map('n', '<leader>gp', gs.preview_hunk)
-    map('n', '<leader>hs', gs.stage_buffer)
+    map('n', '<leader>gsb', gs.stage_buffer)
     map('n', '<leader>gu', gs.undo_stage_hunk)
     map('n', '<leader>gd', gs.diffthis)
     --map('n', '<leader>gD', function() gs.diffthis('~') end)
