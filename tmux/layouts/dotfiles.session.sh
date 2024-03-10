@@ -14,7 +14,7 @@ if initialize_session "dotfiles"; then
   split_h 50
 
   select_pane 1
-  run_cmd "clear && ll && echo"" && glog"
+  run_cmd "clear && ll && echo"" && git log -4"
 
   select_window 1
   run_cmd "nvim"
