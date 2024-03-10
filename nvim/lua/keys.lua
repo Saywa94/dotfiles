@@ -30,6 +30,7 @@ vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 vim.keymap.set('n', '<leader>ps', function()
     builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
+vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
 
 --- Pages navigation
 map('n', '<leader>bb', ':bprev<cr>', {})
@@ -87,7 +88,7 @@ local function toggle_telescope(harpoon_files)
 end
 
 vim.keymap.set(
-    "n", "<leader>p",
+    "n", "<leader>pp",
     function() toggle_telescope(harpoon:list()) end,
     { desc = "Open harpoon window" }
 )

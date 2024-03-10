@@ -12,7 +12,8 @@ ln -s ~/.dotfiles/nvim/lua/ ~/.config/nvim/
 For a new neovim installation:
 `ln -s ~/.dotfiles/nvim/ ~/.config/`
 
-Then install packer and run `:PackerSync` inside neovim
+Then install packer and run `:PackerSync` inside neovim.
+Some plugins require the `make` and `ripgrep` linux packages to be installed.
 
 ### Tmux
 

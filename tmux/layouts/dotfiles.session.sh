@@ -11,10 +11,10 @@ if initialize_session "dotfiles"; then
   new_window "editor"
 
   new_window "terminal"
-  split_h 50
+  run_cmd "clear && ll && echo"" && git log -4"
 
+  split_h 50
   select_pane 1
-  run_cmd "clear && ll && echo"" && glog"
 
   select_window 1
   run_cmd "nvim"
