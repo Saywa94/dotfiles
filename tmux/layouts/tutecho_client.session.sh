@@ -11,10 +11,12 @@ if initialize_session "tutecho_client"; then
   run_cmd "nvim"
 
   new_window "terminal"
+  split_h 50
+
+  select_pane 1
   run_cmd "clear && ll && echo"" && git log -4"
 
-  split_h 50
-  select_pane 1
+  select_pane 2
 
   select_window 1
 

@@ -11,9 +11,10 @@ if initialize_session "dotfiles"; then
   new_window "editor"
 
   new_window "terminal"
-  run_cmd "clear && ll && echo"" && glog -10 && echo "" "
 
   split_h 50
+  run_cmd "clear && ll && echo"" && glog -10"
+
   select_pane 1
 
   select_window 1
