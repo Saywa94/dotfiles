@@ -14,6 +14,7 @@ For a new neovim installation:
 
 Then install packer and run `:PackerSync` inside neovim.
 Some plugins require the `make` and `ripgrep` linux packages to be installed.
+PHP lsp + fixer require php composer, php-mbstring and php-xml extension to be installed.
 
 ### Tmux
 

@@ -12,188 +12,211 @@ vim.g.mapleader = " "
 vim.g.localleader = "\\"
 
 -- IMPORTS
-require('vars')      -- Variables
-require('opts')      -- Options
-require('keys')      -- Keymaps
-require('plug')      -- Plugins
+require("vars") -- Variables
+require("opts") -- Options
+require("keys") -- Keymaps
+require("plug") -- Plugins
 
 -- PLUGINS: Add this section
-require('nvim-tree').setup {
-    git = {
-        ignore = false
-    }
-}
-require('lualine').setup {
-    options = {
-        theme = 'dracula-nvim'
-    },
-    sections = {
-        lualine_c = {
-            {'filename'},
-            { 'codeium#GetStatusString', color = { fg = '#FFEB3B' } }
-        }
-    }
-}
-require('nvim-autopairs').setup{}
+require("nvim-tree").setup({
+	git = {
+		ignore = false,
+	},
+})
+require("lualine").setup({
+	options = {
+		theme = "dracula-nvim",
+	},
+	sections = {
+		lualine_c = {
+			{
+				"filename",
+				path = 1,
+				symbols = {
+					modified = " ", -- Text to show when the file is modified
+					readonly = " ", -- Text to show when the file is non-modifiable or readonly
+					unnamed = "[No Name]", -- Text to show for unnamed buffers
+					newfile = "[New]", -- Text to show for newly created file before first write
+				},
+			},
+			{ "codeium#GetStatusString", color = { fg = "#FFEB3B" } },
+		},
+	},
+})
 
-require'nvim-treesitter.configs'.setup {
-    -- A list of parser names, or "all" (the five listed parsers should always be installed)
-    ensure_installed = {
-        "markdown",
-        "javascript",
-        "typescript",
-        "python",
-        "php",
-        "go",
-        "lua",
-        "vim",
-        "vimdoc",
-        "query",
-        "bash",
-        "comment",
-        "dockerfile",
-        "tsx"
-    },
+require("nvim-autopairs").setup({})
 
-    -- Install parsers synchronously (only applied to `ensure_installed`)
-    sync_install = false,
+require("nvim-treesitter.configs").setup({
+	-- A list of parser names, or "all" (the five listed parsers should always be installed)
+	ensure_installed = {
+		"markdown",
+		"javascript",
+		"typescript",
+		"python",
+		"php",
+		"go",
+		"lua",
+		"vim",
+		"vimdoc",
+		"query",
+		"bash",
+		"comment",
+		"dockerfile",
+		"tsx",
+	},
 
-    -- Automatically install missing parsers when entering buffer
-    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-    auto_install = true,
+	-- Install parsers synchronously (only applied to `ensure_installed`)
+	sync_install = false,
 
-    highlight = {
-        enable = true,
+	-- Automatically install missing parsers when entering buffer
+	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+	auto_install = true,
 
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = { "php" },
-    },
-}
+	highlight = {
+		enable = true,
 
-require('gitsigns').setup{
-    on_attach = function(bufnr)
-    local gs = package.loaded.gitsigns
+		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+		-- Using this option may slow down your editor, and you may see some duplicate highlights.
+		-- Instead of true it can also be a list of languages
+		additional_vim_regex_highlighting = { "php" },
+	},
+})
 
-    local function map(mode, l, r, opts)
-      opts = opts or {}
-      opts.buffer = bufnr
-      vim.keymap.set(mode, l, r, opts)
-    end
+require("gitsigns").setup({
+	on_attach = function(bufnr)
+		local gs = package.loaded.gitsigns
 
-    -- Navigation
-    map('n', '<leader>gj', function()
-      if vim.wo.diff then return ']c' end
-      vim.schedule(function() gs.next_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+		local function map(mode, l, r, opts)
+			opts = opts or {}
+			opts.buffer = bufnr
+			vim.keymap.set(mode, l, r, opts)
+		end
 
-    map('n', '<leader>gk', function()
-      if vim.wo.diff then return '[c' end
-      vim.schedule(function() gs.prev_hunk() end)
-      return '<Ignore>'
-    end, {expr=true})
+		-- Navigation
+		map("n", "<leader>gj", function()
+			if vim.wo.diff then
+				return "]c"
+			end
+			vim.schedule(function()
+				gs.next_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true })
 
-    -- Actions
-    map('n', '<leader>gp', gs.preview_hunk)
-    map('n', '<leader>gsb', gs.stage_buffer)
-    map('n', '<leader>gu', gs.undo_stage_hunk)
-    map('n', '<leader>gd', gs.diffthis)
-    --map('n', '<leader>gD', function() gs.diffthis('~') end)
-    map('n', '<leader>gb', function() gs.blame_line{full=true} end)
+		map("n", "<leader>gk", function()
+			if vim.wo.diff then
+				return "[c"
+			end
+			vim.schedule(function()
+				gs.prev_hunk()
+			end)
+			return "<Ignore>"
+		end, { expr = true })
 
-  end
-}
-require('tokyonight').setup{
-    transparent = true
-}
+		-- Actions
+		map("n", "<leader>gp", gs.preview_hunk)
+		map("n", "<leader>gsb", gs.stage_buffer)
+		map("n", "<leader>gu", gs.undo_stage_hunk)
+		map("n", "<leader>gd", gs.diffthis)
+		map("n", "<leader>gb", function()
+			gs.blame_line({ full = true })
+		end)
+	end,
+})
 
-local harpoon = require('harpoon')
+local harpoon = require("harpoon")
 harpoon:setup({})
 
-local lsp_zero = require('lsp-zero')
+-- LSP
+local lsp_zero = require("lsp-zero")
 
-require('mason').setup({})
-require('mason-lspconfig').setup({
-    ensure_installed = {'tsserver', 'intelephense', 'eslint', 'pyright', 'cssls'},
-    handlers = {
-        lsp_zero.default_setup
-    },
+require("mason").setup({})
+require("mason-lspconfig").setup({
+	ensure_installed = { "tsserver", "eslint", "pyright", "cssls" },
+	handlers = {
+		lsp_zero.default_setup,
+	},
 })
 
-require('lspconfig').intelephense.setup({
-    settings = {
-        intelephense = {
-            files = {
-                maxSize = 5000000,
-                exclude = {
-                    'node_modules',
-                    'vendor',
-                }
-            }
-        }
-    }
+local lspconfig = require("lspconfig")
+lspconfig.lua_ls.setup({
+	settings = {
+		Lua = {
+			diagnostics = {
+				globals = { "vim" },
+			},
+		},
+	},
+})
+lspconfig.phpactor.setup({})
+
+local slow_format_filetypes = {}
+-- Formatter
+require("conform").setup({
+	formatters_by_ft = {
+		lua = { "stylua" },
+		php = { "pint" },
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		typescriptreact = { "prettier" },
+	},
+	format_on_save = function(bufnr)
+		if slow_format_filetypes[vim.bo[bufnr].filetype] then
+			return
+		end
+		local function on_format(err)
+			if err and err:match("timeout$") then
+				slow_format_filetypes[vim.bo[bufnr].filetype] = true
+			end
+		end
+
+		return { timeout_ms = 200, lsp_fallback = true }, on_format
+	end,
+
+	format_after_save = function(bufnr)
+		if not slow_format_filetypes[vim.bo[bufnr].filetype] then
+			return
+		end
+		return { lsp_fallback = true }
+	end,
+
+	-- log_level = vim.log.levels.DEBUG,
 })
 
+require("fidget").setup({})
 -- status bar for codeium
 vim.api.nvim_call_function("codeium#GetStatusString", {})
 
-local cmp = require('cmp')
+local cmp = require("cmp")
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-        end,
-    },
-    sources = cmp.config.sources({
-        { name = 'luasnip', max_item_count = 5 }, -- For luasnip users.
-        { name = 'nvim_lsp', max_item_count = 5 },
-        { name = 'buffer' },
-        { name = 'path' },
-    })
-
+	snippet = {
+		expand = function(args)
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
+		end,
+	},
+	sources = cmp.config.sources({
+		{ name = "luasnip", max_item_count = 5 }, -- For luasnip users.
+		{ name = "nvim_lsp", max_item_count = 5 },
+		{ name = "buffer" },
+		{ name = "path" },
+	}),
 })
 
 -- Set colorscheme at the end to ensure transparency, after set line number colors
-vim.api.nvim_command('colorscheme tokyonight')
-vim.api.nvim_set_hl(0, 'LineNrAbove', { fg='#7E8082' })
-vim.api.nvim_set_hl(0, 'LineNr', { fg='#ece17f' })
-vim.api.nvim_set_hl(0, 'LineNrBelow', { fg='#7E8082' })
+require("tokyonight").setup({
+	style = "storm",
+	transparent = true,
+	styles = {
+		sidebars = "transparent",
+		floats = "transparent",
+	},
+	hide_inactive_statusline = true,
+})
+vim.api.nvim_command("colorscheme tokyonight")
+vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#7E8082" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#ece17f" })
+vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#7E8082" })
 
 -- Comments
-require('Comment').setup()
-
--- Ale Linter config
-vim.g.ale_echo_msg_error_str = ''
-vim.g.ale_echo_msg_warning_str = ''
-vim.g.ale_echo_msg_format = '[%linter%] %s [%severity%]'
--- vim.g.ale_linters_explicit = 1
-vim.g.on_text_changed = 'never'
-vim.g.on_insert_leave = 0
-vim.g.on_insert_enter = 0
-vim.g.ale_completion_enabled = 0
-vim.g.ale_completion_autoimport = 0
-vim.g.ale_go_to_definition = 0
-vim.g.ale_find_references = 0
-vim.g.ale_hover = 0
-vim.g.ale_hover_cursor = 0
-vim.g.ale_fix_on_save = 1
-vim.g.ale_lint_on_save = 1
-vim.g.linter_aliases = { ['tsx'] =  'typescript' }
-vim.g.ale_fixers = {
-    [ 'javascript' ] = 'prettier',
-    [ 'typescript' ] = 'prettier',
-    [ 'typescriptreact' ] = 'prettier',
-    [ 'tsx' ] = 'prettier',
-    [ 'css' ] = 'prettier',
-    [ '*' ] = { 'remove_trailing_lines', 'trim_whitespace' },
-}
-vim.g.ale_linters = {
-    [ 'javascript' ] =  'eslint',
-    [ 'typescript' ] =  'eslint',
-    [ 'typescriptreact' ] = 'eslint',
-    [ 'tsx' ] =  'eslint',
-    [ 'php' ] = 'intelephense',
-}
+require("Comment").setup()
