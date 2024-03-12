@@ -13,8 +13,9 @@ For a new neovim installation:
 `ln -s ~/.dotfiles/nvim/ ~/.config/`
 
 Then install packer and run `:PackerSync` inside neovim.
-Some plugins require the `make` and `ripgrep` linux packages to be installed.
+Some plugins require the `make`, `ripgrep` and `unzip` linux packages to be installed.
 PHP lsp + fixer require php composer, php-mbstring and php-xml extension to be installed.
+Ensure that Mason installs: pint, prettier, stylua for formating.
 
 ### Tmux
 

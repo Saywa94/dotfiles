@@ -133,7 +133,14 @@ local lsp_zero = require("lsp-zero")
 
 require("mason").setup({})
 require("mason-lspconfig").setup({
-	ensure_installed = { "tsserver", "eslint", "pyright", "cssls" },
+	ensure_installed = {
+		"cssls",
+		"eslint",
+		"lua_ls",
+		"phpactor",
+		"pyright",
+		"tsserver",
+	},
 	handlers = {
 		lsp_zero.default_setup,
 	},
