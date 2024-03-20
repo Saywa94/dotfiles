@@ -8,17 +8,18 @@ if initialize_session "tutecho_client"; then
 
   # Create a new window inline within session layout definition.
   new_window "editor"
-  run_cmd "nvim"
 
   new_window "terminal"
   split_h 50
 
   select_pane 1
-  run_cmd "clear && ll && echo"" && git log -4"
+  run_cmd "git log"
 
   select_pane 2
+  run_cmd "ll"
 
   select_window 1
+  run_cmd "nvim"
 
 fi
 

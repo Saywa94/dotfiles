@@ -227,3 +227,5 @@ vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#7E8082" })
 
 -- Comments
 require("Comment").setup()
+-- Todo highlight
+require("todo-comments").setup()

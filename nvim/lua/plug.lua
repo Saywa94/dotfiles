@@ -99,6 +99,8 @@ return require("packer").startup({
 				require("Comment").setup()
 			end,
 		})
+		-- Todo highlight
+		use({ "folke/todo-comments.nvim" })
 	end,
 	config = {
 		package_root = vim.fn.stdpath("config") .. "/site/pack",
