@@ -140,6 +140,7 @@ require("mason-lspconfig").setup({
 		"phpactor",
 		"pyright",
 		"tsserver",
+		"gopls",
 	},
 	handlers = {
 		lsp_zero.default_setup,
