@@ -34,7 +34,6 @@ return require("packer").startup({
 		use("folke/tokyonight.nvim", { lazy = false, priority = 1000, ops = {} })
 
 		-- [[ Dev ]]
-		use({ "windwp/nvim-autopairs" })
 		use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 		use({ "lewis6991/gitsigns.nvim" }) -- Useful: diffthis, next/prev hunk, reset_hunk, reset_buffer
 		use({ "folke/trouble.nvim" }) -- Diagnostics
