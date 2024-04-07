@@ -68,7 +68,7 @@ vim.keymap.set("n", "<leader>e", function()
 end)
 -- append current buffer to harpoon
 vim.keymap.set("n", "<leader>a", function()
-	harpoon:list():append()
+	harpoon:list():add()
 end)
 vim.keymap.set("n", "<leader>r", function()
 	harpoon:list():remove()
