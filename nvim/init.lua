@@ -22,6 +22,21 @@ require("nvim-tree").setup({
 	git = {
 		ignore = false,
 	},
+	view = {
+		side = "right",
+		width = 40,
+	},
+	diagnostics = {
+		enable = true,
+		show_on_dirs = false,
+	},
+	renderer = {
+		group_empty = true,
+		highlight_diagnostics = true,
+	},
+	update_focused_file = {
+		enable = true,
+	},
 })
 require("lualine").setup({
 	options = {
