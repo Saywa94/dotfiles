@@ -1,0 +1,8 @@
+[window]
+opacity = 0.95
+dimensions = { columns = 200, lines = 48 }
+
+[font]
+normal = { family = "Inconsolata Nerd Font Mono", style = "Regular" }
+size = 12.5
+

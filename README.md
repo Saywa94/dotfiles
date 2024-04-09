@@ -32,3 +32,6 @@ export TMUXIFIER_LAYOUT_PATH="$HOME/.config/tmux/layouts"
 ```
 When running and older version of tmux, pass the argument: `-f ~/.config/tmux/tmux.conf`.
 
+### Alacritty
+
+Make symbolic link: `ln -s ~/.dotfiles/alacritty/ ~/.config`
