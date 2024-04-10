@@ -5,7 +5,7 @@ import = [
 [window]
 opacity = 0.95
 startup_mode = "Windowed"
-dimensions = { columns = 185, lines = 48 }
+dimensions = { columns = 187, lines = 46 }
 
 [font]
 normal = { family = "JetBrainsMonoNL Nerd Font Mono", style = "Regular" }
