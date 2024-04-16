@@ -19,7 +19,7 @@ opt.termguicolors = true -- bool: If term supports ui color then enable
 opt.ignorecase = true -- bool: Ignore case in search patterns
 opt.smartcase = true -- bool: Override ignorecase if search contains capitals
 opt.incsearch = true -- bool: Use incremental search
-opt.hlsearch = false -- bool: Highlight search matches
+opt.hlsearch = true -- bool: Highlight search matches
 
 -- [[ Whitespace ]]
 opt.expandtab = true -- bool: Use spaces instead of tabs
@@ -34,3 +34,17 @@ opt.splitbelow = true -- bool: Place new window below the current one
 -- [[ Theme ]]
 opt.syntax = "ON" -- str:  Allow syntax highlighting
 opt.termguicolors = true -- bool: If term supports ui color then enable
+
+-- [[ KickStart nvim ]]
+-- Save undo history
+opt.undofile = true
+-- Decrease update time
+opt.updatetime = 250
+-- Highlight when yanking (copying) text
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})

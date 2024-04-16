@@ -26,6 +26,9 @@ map("n", "<leader>l", "<C-w>l", {})
 map("n", "<leader>k", "<C-w>k", {})
 map("n", "<leader>j", "<C-w>j", {})
 
+-- remove highlight
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
 --- Telescope fuzzy finder
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
@@ -42,7 +45,9 @@ vim.keymap.set("n", "<leader>pWs", function()
 	local word = vim.fn.expand("<cWORD>")
 	builtin.grep_string({ search = word })
 end)
-vim.keymap.set("n", "<leader>ph", builtin.help_tags, {})
+vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
 --- Pages navigation
 map("n", "<leader>bb", ":bprev<cr>", {})
@@ -134,12 +139,30 @@ end, { desc = "Open harpoon window" })
 -- LSP keybindings
 local lsp_zero = require("lsp-zero")
 
-lsp_zero.on_attach(function(_, bufnr)
+lsp_zero.on_attach(function(client, bufnr)
 	require("luasnip.loaders.from_vscode").lazy_load()
 	-- see :help lsp-zero-keybindings
 	-- to learn the available actions
 	lsp_zero.default_keymaps({ buffer = bufnr })
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
+	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+
+	-- The following two autocommands are used to highlight references of the
+	-- word under your cursor when your cursor rests there for a little while.
+	--    See `:help CursorHold` for information about when this is executed
+	--
+	-- When you move your cursor, the highlights will be cleared (the second autocommand).
+	if client and client.server_capabilities.documentHighlightProvider then
+		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+			buffer = bufnr,
+			callback = vim.lsp.buf.document_highlight,
+		})
+
+		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+			buffer = bufnr,
+			callback = vim.lsp.buf.clear_references,
+		})
+	end
 end)
 
 local cmp = require("cmp")
@@ -164,13 +187,13 @@ cmp.setup({
 -- [[ Trouble diagnostics ]]
 vim.keymap.set("n", "<leader>xx", function()
 	require("trouble").toggle()
-end)
+end, { desc = "Toggle Trouble" })
 vim.keymap.set("n", "<leader>xd", function()
 	require("trouble").toggle("document_diagnostics")
-end)
+end, { desc = "Toggle Document Diagnostics" })
 vim.keymap.set("n", "<leader>xw", function()
 	require("trouble").toggle("workspace_diagnostics")
-end)
+end, { desc = "Toggle Workspace Diagnostics" })
 vim.keymap.set("n", "<leader>xq", function()
 	require("trouble").toggle("quickfix")
-end)
+end, { desc = "Toggle Quickfix" })
