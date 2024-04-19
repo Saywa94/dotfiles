@@ -35,6 +35,19 @@ opt.splitbelow = true -- bool: Place new window below the current one
 opt.syntax = "ON" -- str:  Allow syntax highlighting
 opt.termguicolors = true -- bool: If term supports ui color then enable
 
+-- [[ Folding ]]
+opt.foldmethod = "expr"
+opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- unfold all folds on file/buffer enter
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	desc = "Unfold all folds on file/buffer read",
+	group = vim.api.nvim_create_augroup("treesitter-unfold", { clear = true }),
+	pattern = "*",
+	callback = function()
+		vim.cmd("normal zR")
+	end,
+})
+
 -- [[ KickStart nvim ]]
 -- Save undo history
 opt.undofile = true
