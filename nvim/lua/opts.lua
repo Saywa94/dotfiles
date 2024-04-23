@@ -38,15 +38,11 @@ opt.termguicolors = true -- bool: If term supports ui color then enable
 -- [[ Folding ]]
 opt.foldmethod = "expr"
 opt.foldexpr = "nvim_treesitter#foldexpr()"
--- unfold all folds on file/buffer enter
-vim.api.nvim_create_autocmd("BufWinEnter", {
-	desc = "Unfold all folds on file/buffer read",
-	group = vim.api.nvim_create_augroup("treesitter-unfold", { clear = true }),
-	pattern = "*",
-	callback = function()
-		vim.cmd("normal zR")
-	end,
-})
+opt.foldcolumn = "0"
+opt.foldlevel = 99
+opt.foldlevelstart = 99
+opt.foldenable = true
+opt.foldtext = ""
 
 -- [[ KickStart nvim ]]
 -- Save undo history
