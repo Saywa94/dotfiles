@@ -6,7 +6,7 @@ return require("packer").startup({
 		-- Fuzzy finder
 		use({
 			"nvim-telescope/telescope.nvim",
-			tag = "0.1.5",
+			tag = "0.1.7",
 			-- or                            , branch = '0.1.x',
 			requires = {
 				{ "nvim-lua/plenary.nvim" },
@@ -17,8 +17,8 @@ return require("packer").startup({
 		-- filesystem navigation + icons
 		use("nvim-tree/nvim-web-devicons")
 		use({
-			"kyazdani42/nvim-tree.lua",
-			requires = "kyazdani42/nvim-web-devicons",
+			"nvim-tree/nvim-tree.lua",
+			requires = "nvim-tree/nvim-web-devicons",
 		})
 
 		-- [[ Theme ]]
