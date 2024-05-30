@@ -270,3 +270,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		end
 	end,
 })
+
+-- Trouble diagnostics
+require("trouble").setup()

@@ -185,15 +185,22 @@ cmp.setup({
 })
 
 -- [[ Trouble diagnostics ]]
-vim.keymap.set("n", "<leader>xx", function()
-	require("trouble").toggle()
-end, { desc = "Toggle Trouble" })
-vim.keymap.set("n", "<leader>xd", function()
-	require("trouble").toggle("document_diagnostics")
-end, { desc = "Toggle Document Diagnostics" })
-vim.keymap.set("n", "<leader>xw", function()
-	require("trouble").toggle("workspace_diagnostics")
-end, { desc = "Toggle Workspace Diagnostics" })
-vim.keymap.set("n", "<leader>xq", function()
-	require("trouble").toggle("quickfix")
-end, { desc = "Toggle Quickfix" })
+vim.keymap.set(
+	"n",
+	"<leader>xx",
+	"<cmd>Trouble diagnostics toggle<cr>",
+	{ desc = "Toggle Trouble workspace diagnostics" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>xd",
+	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+	{ desc = "Toggle Document Diagnostics" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>xr",
+	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+	{ desc = "Trouble LSP Definitions / references" }
+)
+vim.keymap.set("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Toggle Quickfix" })
