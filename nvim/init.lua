@@ -239,10 +239,6 @@ cmp.setup({
 require("tokyonight").setup({
 	style = "storm",
 	transparent = true,
-	styles = {
-		sidebars = "transparent",
-		floats = "transparent",
-	},
 	hide_inactive_statusline = true,
 })
 vim.api.nvim_command("colorscheme tokyonight")
