@@ -19,4 +19,4 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH=$BUN_INSTALL/bin:$PATH
 
 # Oh my posh
-eval "$(oh-my-posh init bash --config ~/.dotfiles/bash/custom_prompt.omp.toml))"
+eval "$(oh-my-posh init bash --config ~/.dotfiles/bash/custom_prompt.omp.toml)"
