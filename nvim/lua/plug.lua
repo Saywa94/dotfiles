@@ -36,7 +36,6 @@ return require("packer").startup({
 		-- [[ Dev ]]
 		use("nvim-treesitter/nvim-treesitter", { run = ":TSUpdate" })
 		use({ "lewis6991/gitsigns.nvim" }) -- Useful: diffthis, next/prev hunk, reset_hunk, reset_buffer
-		use({ "folke/trouble.nvim" }) -- Diagnostics
 
 		-- The Primgean Harpoon 2
 		use({
@@ -45,49 +44,6 @@ return require("packer").startup({
 			requires = { { "nvim-lua/plenary.nvim" } },
 		})
 
-		-- Autocompletion
-		use({ "hrsh7th/cmp-nvim-lsp" })
-		use({ "hrsh7th/cmp-buffer" })
-		use({ "hrsh7th/cmp-path" })
-		use({ "hrsh7th/cmp-cmdline" })
-		use({ "hrsh7th/nvim-cmp" })
-
-		-- LSP zero
-		use({
-			"L3MON4D3/LuaSnip",
-			tag = "v2.*",
-			after = "nvim-cmp",
-			run = "make install_jsregexp",
-			requires = {
-				{ "rafamadriz/friendly-snippets" },
-			},
-		})
-		use({ "saadparwaiz1/cmp_luasnip" })
-
-		use({
-			"VonHeikemen/lsp-zero.nvim",
-			branch = "v3.x",
-			requires = {
-				--- manage the language servers from neovim
-				{ "williamboman/mason.nvim" },
-				{ "williamboman/mason-lspconfig.nvim" },
-
-				-- LSP Support
-				{ "neovim/nvim-lspconfig" },
-				-- Notifications
-				{ "j-hui/fidget.nvim" },
-			},
-		})
-
-		-- CODEIUM Autocompletion AI
-		use({
-			"Exafunction/codeium.vim",
-			config = function()
-				vim.keymap.set("i", "<S-Tab>", function()
-					return vim.fn["codeium#CycleCompletions"](1)
-				end, { expr = true })
-			end,
-		})
 		-- Linter / Formatter
 		use({ "stevearc/conform.nvim" })
 

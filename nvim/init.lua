@@ -56,7 +56,6 @@ require("lualine").setup({
 					newfile = "[New]", -- Text to show for newly created file before first write
 				},
 			},
-			{ "codeium#GetStatusString", color = { fg = "#FFEB3B" } },
 		},
 	},
 })
@@ -155,40 +154,6 @@ require("gitsigns").setup({
 local harpoon = require("harpoon")
 harpoon:setup({})
 
--- LSP
-local lsp_zero = require("lsp-zero")
-
-require("mason").setup({})
-require("mason-lspconfig").setup({
-	ensure_installed = {
-		"cssls",
-		"eslint",
-		"lua_ls",
-		"phpactor",
-		"pyright",
-		"ruff",
-		"gopls",
-	},
-	handlers = {
-		lsp_zero.default_setup,
-	},
-})
-
-vim.lsp.config("lua_ls", {
-	settings = {
-		Lua = {
-			diagnostics = {
-				globals = { "vim" },
-			},
-		},
-	},
-})
-
--- Show diagnostic on the same line
-vim.diagnostic.config({
-	virtual_text = true,
-})
-
 local slow_format_filetypes = {}
 -- Formatter
 require("conform").setup({
@@ -228,21 +193,6 @@ require("fidget").setup({})
 -- status bar for codeium
 vim.api.nvim_call_function("codeium#GetStatusString", {})
 
-local cmp = require("cmp")
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
-		end,
-	},
-	sources = cmp.config.sources({
-		{ name = "luasnip", max_item_count = 5 }, -- For luasnip users.
-		{ name = "nvim_lsp", max_item_count = 5 },
-		{ name = "buffer" },
-		{ name = "path" },
-	}),
-})
-
 -- Set colorscheme at the end to ensure transparency, after set line number colors
 require("tokyonight").setup({
 	style = "storm",
@@ -274,9 +224,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
 		end
 	end,
 })
-
--- Trouble diagnostics
-require("trouble").setup()
 
 -- Css colorizer
 require("colorizer").setup({
