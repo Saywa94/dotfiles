@@ -189,10 +189,6 @@ require("conform").setup({
 	-- log_level = vim.log.levels.DEBUG,
 })
 
-require("fidget").setup({})
--- status bar for codeium
-vim.api.nvim_call_function("codeium#GetStatusString", {})
-
 -- Set colorscheme at the end to ensure transparency, after set line number colors
 require("tokyonight").setup({
 	style = "storm",
