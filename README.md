@@ -14,7 +14,7 @@ For a new neovim installation:
 
 Then install packer and run `:PackerSync` inside neovim (ensure that lines requiring vars, opts and keys are commented. Uncomment them after PackerSync).
 Some plugins require the `make`, `ripgrep` and `unzip` linux packages to be installed.
-PHP lsp + fixer require php composer, php-mbstring and php-xml extension to be installed.
+PHP lsp + fixer require php composer, `php-mbstring` and `php-xml` extension to be installed.
 Golsp requires go to be installed.
 Mason requires npm/node to be installed.
 Ensure that Mason installs: pint, prettier, stylua for formating.
