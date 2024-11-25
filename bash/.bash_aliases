@@ -1,4 +1,5 @@
 alias glog="git log --oneline -7"
+alias gfull="git add . && git commit -m '...' && git push"
 
 alias ll="exa --long --header --icons"
 alias lla="exa --long --header --icons --all"
