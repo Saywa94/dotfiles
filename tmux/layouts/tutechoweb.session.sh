@@ -15,6 +15,7 @@ if initialize_session "TuTechoweb"; then
 
   new_window "docker"
   run_cmd "docker ps -a"
+  run_cmd "cd deploy/"
 
   select_window 1
   run_cmd "nvim"
