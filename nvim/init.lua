@@ -269,3 +269,8 @@ vim.api.nvim_create_autocmd("BufEnter", {
 
 -- Trouble diagnostics
 require("trouble").setup()
+
+-- Css colorizer
+require("colorizer").setup({
+	"css",
+})

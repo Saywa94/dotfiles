@@ -100,6 +100,9 @@ return require("packer").startup({
 		})
 		-- Todo highlight
 		use({ "folke/todo-comments.nvim" })
+
+		-- Css colors highlight
+		use({ "norcalli/nvim-colorizer.lua" })
 	end,
 	config = {
 		package_root = vim.fn.stdpath("config") .. "/site/pack",
