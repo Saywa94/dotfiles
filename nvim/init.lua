@@ -106,6 +106,7 @@ require("nvim-treesitter.configs").setup({
 	end,
 })
 vim.api.nvim_set_hl(0, "@lsp.mod.readonly.typescript", { link = "Constant" })
+vim.api.nvim_set_hl(0, "@lsp.mod.readonly.javascript", { link = "Constant" })
 
 require("gitsigns").setup({
 	on_attach = function(bufnr)
