@@ -48,6 +48,9 @@ end)
 vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
+vim.keymap.set("n", "<leader>sf", function()
+	builtin.lsp_document_symbols({ symbols = { "class", "function", "method" } })
+end, { desc = "[S]earch [F]unctions" })
 
 --- Pages navigation
 map("n", "<leader>bb", ":bprev<cr>", {})
