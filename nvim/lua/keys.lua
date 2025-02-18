@@ -33,6 +33,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 local builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
 vim.keymap.set("n", "<C-p>", builtin.git_files, {})
+vim.keymap.set("n", "<leader>pp", builtin.resume, { desc = "Resume telescope search" })
 vim.keymap.set("n", "<leader>gt", builtin.git_status, {})
 vim.keymap.set("n", "<leader>ps", function()
 	builtin.grep_string({ search = vim.fn.input("Grep > ") })
@@ -114,30 +115,6 @@ end)
 vim.keymap.set("n", "<leader>r'", function()
 	harpoon:list():removeAt(4)
 end)
-
--- Telescope integration
-local conf = require("telescope.config").values
-local function toggle_telescope(harpoon_files)
-	local file_paths = {}
-	for _, item in ipairs(harpoon_files.items) do
-		table.insert(file_paths, item.value)
-	end
-
-	require("telescope.pickers")
-		.new({}, {
-			prompt_title = "Harpoon",
-			finder = require("telescope.finders").new_table({
-				results = file_paths,
-			}),
-			previewer = conf.file_previewer({}),
-			sorter = conf.generic_sorter({}),
-		})
-		:find()
-end
-
-vim.keymap.set("n", "<leader>pp", function()
-	toggle_telescope(harpoon:list())
-end, { desc = "Open harpoon window" })
 
 -- LSP keybindings
 local lsp_zero = require("lsp-zero")
