@@ -184,6 +184,11 @@ lspconfig.lua_ls.setup({
 })
 lspconfig.phpactor.setup({})
 
+-- Show diagnostic on the same line
+vim.diagnostic.config({
+	virtual_text = true,
+})
+
 local slow_format_filetypes = {}
 -- Formatter
 require("conform").setup({
