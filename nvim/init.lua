@@ -198,6 +198,7 @@ require("conform").setup({
 		javascript = { "prettier" },
 		typescript = { "prettier" },
 		typescriptreact = { "prettier" },
+		sql = { "sql_formatter" },
 	},
 	format_on_save = function(bufnr)
 		if slow_format_filetypes[vim.bo[bufnr].filetype] then

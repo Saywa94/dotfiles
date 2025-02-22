@@ -17,7 +17,7 @@ Some plugins require the `make`, `ripgrep` and `unzip` linux packages to be inst
 PHP lsp + fixer require php composer, `php-mbstring` and `php-xml` extension to be installed.
 Golsp requires go to be installed.
 Mason requires npm/node to be installed.
-Ensure that Mason installs: pint, prettier, stylua for formating.
+Ensure that Mason installs: pint, prettier, stylua, sql-formatter for formating.
 
 ### Tmux
 
