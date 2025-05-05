@@ -281,4 +281,7 @@ require("trouble").setup()
 -- Css colorizer
 require("colorizer").setup({
 	"css",
-})
+	"scss",
+	"html",
+	"tsx",
+}, { names = false })
