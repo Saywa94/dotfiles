@@ -164,7 +164,6 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"phpactor",
 		"pyright",
-		"ts_ls",
 		"gopls",
 	},
 	handlers = {

@@ -103,6 +103,15 @@ return require("packer").startup({
 
 		-- Css colors highlight
 		use({ "norcalli/nvim-colorizer.lua" })
+
+		-- Typescript tools
+		use({
+			"pmizio/typescript-tools.nvim",
+			requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+			config = function()
+				require("typescript-tools").setup({})
+			end,
+		})
 	end,
 	config = {
 		package_root = vim.fn.stdpath("config") .. "/site/pack",
