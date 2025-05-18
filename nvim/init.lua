@@ -284,3 +284,11 @@ require("colorizer").setup({
 	"html",
 	"tsx",
 }, { names = false })
+
+-- Hardtime
+require("hardtime").setup({
+	disable_mouse = false,
+})
+
+-- Nvim notify
+vim.notify = require("notify")

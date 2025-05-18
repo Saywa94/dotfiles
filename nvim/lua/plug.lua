@@ -112,6 +112,14 @@ return require("packer").startup({
 				require("typescript-tools").setup({})
 			end,
 		})
+
+		-- Hardtime to nag me on bad habits
+		use({
+			"m4xshen/hardtime.nvim",
+			requires = { "MunifTanjim/nui.nvim" },
+		})
+		-- Nvim notifications
+		use("rcarriga/nvim-notify")
 	end,
 	config = {
 		package_root = vim.fn.stdpath("config") .. "/site/pack",
