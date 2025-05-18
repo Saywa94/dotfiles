@@ -11,6 +11,8 @@ vim.keymap.set("n", " ", "<Nop>", { silent = true, remap = false })
 vim.g.mapleader = " "
 vim.g.localleader = "\\"
 
+-- window boredrs
+vim.o.winborder = "rounded"
 -- IMPORTS
 require("vars") -- Variables
 require("opts") -- Options
@@ -171,8 +173,7 @@ require("mason-lspconfig").setup({
 	},
 })
 
-local lspconfig = require("lspconfig")
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -181,7 +182,6 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
-lspconfig.phpactor.setup({})
 
 -- Show diagnostic on the same line
 vim.diagnostic.config({
