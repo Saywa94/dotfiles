@@ -35,3 +35,8 @@ When running and older version of tmux, pass the argument: `-f ~/.config/tmux/tm
 ### Alacritty
 
 Make symbolic link: `ln -s ~/.dotfiles/alacritty/ ~/.config`
+
+### Key remap
+
+I use [Keyd](https://github.com/rvaiya/keyd) to remap CapsLock to esc on press and ctrl on hold.
+Make symbolic link: `sudo ln -s ~/.dotfiles/keyd/default.conf /etc/keyd/default.conf`
