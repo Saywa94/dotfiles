@@ -166,6 +166,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"phpactor",
 		"pyright",
+		"ruff",
 		"gopls",
 	},
 	handlers = {
@@ -198,7 +199,7 @@ require("conform").setup({
 		typescript = { "prettier" },
 		typescriptreact = { "prettier" },
 		sql = { "sql_formatter" },
-		python = { "ruff" },
+		python = { "ruff_fix", "ruff_format" },
 	},
 	format_on_save = function(bufnr)
 		if slow_format_filetypes[vim.bo[bufnr].filetype] then
