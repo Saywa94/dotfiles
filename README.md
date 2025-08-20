@@ -21,7 +21,7 @@ Ensure that Mason installs: pint, prettier, stylua, sql-formatter for formating.
 
 ### Tmux
 
-`ln -s ~/.dotfiles/tmux/ ~/.config`
+`ln -s ~/.dotfiles/tmux ~/.config`
 
 
 To manage sessions in tmux I use Tmuxifier: https://github.com/jimeh/tmuxifier.
