@@ -40,3 +40,11 @@ Make symbolic link: `ln -s ~/.dotfiles/alacritty/ ~/.config`
 
 I use [Keyd](https://github.com/rvaiya/keyd) to remap CapsLock to esc on press and ctrl on hold.
 Make symbolic link: `sudo ln -s ~/.dotfiles/keyd/default.conf /etc/keyd/default.conf`
+
+### Oh My Posh
+
+[Oh My Posh](https://ohmyposh.dev/docs/installation/linux) is a terminal prompt. In bashrc add the following line:
+```bash
+export PATH=$PATH:/home/saywa/.local/bin
+eval "$(oh-my-posh init bash --config ~/.dotfiles/bash/custom_prompt.omp.toml)"
+```
