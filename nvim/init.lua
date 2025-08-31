@@ -184,6 +184,11 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
+-- Bugfix for eslint: root_dir gave a table instead of string
+vim.lsp.config("eslint", {
+	root_dir = require("lspconfig.util").root_pattern(".eslintrc", ".eslintrc.js", "package.json"),
+})
+
 -- Show diagnostic on the same line
 vim.diagnostic.config({
 	virtual_text = true,
@@ -276,7 +281,10 @@ vim.api.nvim_create_autocmd("BufEnter", {
 })
 
 -- Trouble diagnostics
-require("trouble").setup()
+require("trouble").setup({
+	auto_close = true,
+	auto_preview = false,
+})
 
 -- Css colorizer
 require("colorizer").setup({
