@@ -283,7 +283,12 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- Trouble diagnostics
 require("trouble").setup({
 	auto_close = true,
-	auto_preview = false,
+	auto_preview = true,
+	preview = {
+		type = "main",
+		scratch = true,
+		border = "none",
+	},
 })
 
 -- Css colorizer
