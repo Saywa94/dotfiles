@@ -3,6 +3,8 @@ local map = vim.api.nvim_set_keymap
 
 -- Save file
 map("n", "<C-s>", ":w<cr>", {})
+-- Copy current file path to system clipboard
+map("n", "<leader>cp", ":let @+ = expand('%')<cr>", { desc = "Copy current relative file path" })
 
 -- use U for redo
 map("n", "U", "<C-r>", {})
