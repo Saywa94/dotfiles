@@ -9,8 +9,8 @@ To replace an already existing neovim configuration:
 ln -s ~/.dotfiles/nvim/init.lua ~/.config/nvim/init.lua
 ln -s ~/.dotfiles/nvim/lua/ ~/.config/nvim/
 ```
-For a new neovim installation:
-`ln -s ~/.dotfiles/nvim ~/.config`
+For a new neovim installation (ensure .config already exists):
+`ln -s ~/.dotfiles/nvim ~/.config/`
 
 Then install packer and run `:PackerSync` inside neovim (ensure that lines requiring vars, opts and keys are commented. Uncomment them after PackerSync).
 Some plugins require the `make`, `ripgrep` and `unzip` linux packages to be installed.
