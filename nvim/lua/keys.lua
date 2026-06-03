@@ -38,21 +38,21 @@ vim.keymap.set("n", "<C-p>", builtin.git_files, {})
 vim.keymap.set("n", "<leader>pp", builtin.resume, { desc = "Resume telescope search" })
 vim.keymap.set("n", "<leader>gt", builtin.git_status, {})
 vim.keymap.set("n", "<leader>ps", function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
+    builtin.grep_string({ search = vim.fn.input("Grep > ") })
 end)
 vim.keymap.set("n", "<leader>pws", function()
-	local word = vim.fn.expand("<cword>")
-	builtin.grep_string({ search = word })
+    local word = vim.fn.expand("<cword>")
+    builtin.grep_string({ search = word })
 end)
 vim.keymap.set("n", "<leader>pWs", function()
-	local word = vim.fn.expand("<cWORD>")
-	builtin.grep_string({ search = word })
+    local word = vim.fn.expand("<cWORD>")
+    builtin.grep_string({ search = word })
 end)
 vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
 vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
 vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 vim.keymap.set("n", "<leader>sf", function()
-	builtin.lsp_document_symbols({ symbols = { "class", "function", "method" } })
+    builtin.lsp_document_symbols({ symbols = { "class", "function", "method" } })
 end, { desc = "[S]earch [F]unctions" })
 
 --- Pages navigation
@@ -75,114 +75,122 @@ map("n", "<leader>Y", [["+Y]], {})
 local harpoon = require("harpoon")
 harpoon:setup()
 vim.keymap.set("n", "<leader>e", function()
-	harpoon.ui:toggle_quick_menu(harpoon:list())
+    harpoon.ui:toggle_quick_menu(harpoon:list())
 end)
 -- append current buffer to harpoon
 vim.keymap.set("n", "<leader>a", function()
-	harpoon:list():add()
+    harpoon:list():add()
 end)
 vim.keymap.set("n", "<leader>r", function()
-	harpoon:list():remove()
+    harpoon:list():remove()
 end)
 -- Toggle previous & next buffers stored within Harpoon list
 vim.keymap.set("n", "<C-h>", function()
-	harpoon:list():prev()
+    harpoon:list():prev()
 end)
 vim.keymap.set("n", "<C-l>", function()
-	harpoon:list():next()
+    harpoon:list():next()
 end)
 
 vim.keymap.set("n", "<leader>&", function()
-	harpoon:list():select(1)
+    harpoon:list():select(1)
 end)
 vim.keymap.set("n", "<leader>é", function()
-	harpoon:list():select(2)
+    harpoon:list():select(2)
 end)
 vim.keymap.set("n", '<leader>"', function()
-	harpoon:list():select(3)
+    harpoon:list():select(3)
 end)
 vim.keymap.set("n", "<leader>'", function()
-	harpoon:list():select(4)
+    harpoon:list():select(4)
 end)
 
 vim.keymap.set("n", "<leader>r&", function()
-	harpoon:list():removeAt(1)
+    harpoon:list():removeAt(1)
 end)
 vim.keymap.set("n", "<leader>ré", function()
-	harpoon:list():removeAt(2)
+    harpoon:list():removeAt(2)
 end)
 vim.keymap.set("n", '<leader>r"', function()
-	harpoon:list():removeAt(3)
+    harpoon:list():removeAt(3)
 end)
 vim.keymap.set("n", "<leader>r'", function()
-	harpoon:list():removeAt(4)
+    harpoon:list():removeAt(4)
 end)
 
--- LSP keybindings
-local lsp_zero = require("lsp-zero")
+-- Global LSP Attach mappings (Put this in keys.lua)
+vim.api.nvim_create_autocmd("LspAttach", {
+    group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+    callback = function(event)
+        local bufnr = event.buf
+        local client = vim.lsp.get_client_by_id(event.data.client_id)
+        local opts = { buffer = event.buf, silent = true }
 
-lsp_zero.on_attach(function(client, bufnr)
-	require("luasnip.loaders.from_vscode").lazy_load()
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp_zero.default_keymaps({ buffer = bufnr })
-	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = bufnr })
-	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "[C]ode [A]ction" })
+        -- Your custom overrides
+        vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", opts)
+        vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr, desc = "[C]ode [A]ction" })
 
-	-- The following two autocommands are used to highlight references of the
-	-- word under your cursor when your cursor rests there for a little while.
-	--    See `:help CursorHold` for information about when this is executed
-	--
-	-- When you move your cursor, the highlights will be cleared (the second autocommand).
-	if client and client.server_capabilities.documentHighlightProvider then
-		vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-			buffer = bufnr,
-			callback = vim.lsp.buf.document_highlight,
-		})
+        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+        vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, opts)
 
-		vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-			buffer = bufnr,
-			callback = vim.lsp.buf.clear_references,
-		})
-	end
-end)
+        -- Your beloved CursorHold element highlighting!
+        if client and client.server_capabilities.documentHighlightProvider then
+            local highlight_group = vim.api.nvim_create_augroup("LspDocumentHighlight", { clear = false })
+
+            vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+                buffer = bufnr,
+                group = highlight_group,
+                callback = vim.lsp.buf.document_highlight,
+            })
+
+            vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+                buffer = bufnr,
+                group = highlight_group,
+                callback = vim.lsp.buf.clear_references,
+            })
+        end
+    end,
+})
 
 local cmp = require("cmp")
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 cmp.setup({
-	mapping = cmp.mapping.preset.insert({
-		-- Select next/previous item
-		["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-		["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
-		-- `Enter` key to confirm completion
-		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		-- Ctrl+Space to trigger completion menu
-		["<C-c>"] = cmp.mapping.complete(),
+    mapping = cmp.mapping.preset.insert({
+        -- Select next/previous item
+        ["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
+        ["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
+        -- `Enter` key to confirm completion
+        ["<CR>"] = cmp.mapping.confirm({ select = false }),
+        -- Ctrl+Space to trigger completion menu
+        ["<C-c>"] = cmp.mapping.complete(),
 
-		-- Scroll up and down in the completion documentation
-		["<C-u>"] = cmp.mapping.scroll_docs(-4),
-		["<C-d>"] = cmp.mapping.scroll_docs(4),
-	}),
+        -- Scroll up and down in the completion documentation
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+    }),
 })
 
 -- [[ Trouble diagnostics ]]
 vim.keymap.set(
-	"n",
-	"<leader>xx",
-	"<cmd>Trouble diagnostics toggle<cr>",
-	{ desc = "Toggle Trouble workspace diagnostics" }
+    "n",
+    "<leader>xx",
+    "<cmd>Trouble diagnostics toggle<cr>",
+    { desc = "Toggle Trouble workspace diagnostics" }
 )
 vim.keymap.set(
-	"n",
-	"<leader>xd",
-	"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-	{ desc = "Toggle Document Diagnostics" }
+    "n",
+    "<leader>xd",
+    "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+    { desc = "Toggle Document Diagnostics" }
 )
 vim.keymap.set(
-	"n",
-	"<leader>xr",
-	"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-	{ desc = "Trouble LSP Definitions / references" }
+    "n",
+    "<leader>xr",
+    "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+    { desc = "Trouble LSP Definitions / references" }
 )
 vim.keymap.set("n", "<leader>xq", "<cmd>Trouble qflist toggle<cr>", { desc = "Toggle Quickfix" })
