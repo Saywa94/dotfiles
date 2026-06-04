@@ -12,7 +12,7 @@ ln -s ~/.dotfiles/nvim/lua/ ~/.config/nvim/
 For a new neovim installation (ensure .config already exists):
 `ln -s ~/.dotfiles/nvim ~/.config/`
 
-Then install packer and run `:PackerSync` inside neovim (ensure that lines requiring vars, opts and keys are commented. Uncomment them after PackerSync).
+Tree-sitter needs tree-sitter-cli to be installed (use rust's cargo for latest version).
 Some plugins require the `make`, `ripgrep` and `unzip` linux packages to be installed.
 PHP lsp + fixer require php composer, `php-mbstring` and `php-xml` extension to be installed.
 Golsp requires go to be installed.
