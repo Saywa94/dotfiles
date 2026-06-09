@@ -28,7 +28,7 @@ return {
     -- Simple plugins
     { "mhinz/vim-startify" },         -- start screen
     { "DanilaMihailov/beacon.nvim" }, -- cursor jump
-    { "folke/todo-comments.nvim",  dependencies = { "nvim-lua/plenary.nvim" } },
+    { "folke/todo-comments.nvim",  dependencies = { "nvim-lua/plenary.nvim" },            opts = {} },
     { "rcarriga/nvim-notify",      config = function() vim.notify = require("notify") end },
 
     -- Hardtime
