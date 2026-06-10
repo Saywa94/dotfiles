@@ -60,6 +60,16 @@ return {
         opts = {}
     },
 
+    -- Copilot
+    -- {
+    --     "github/copilot.vim",
+    --     config = function()
+    --         vim.keymap.set('i', '<S-Tab>', '<Plug>(copilot-next)', { silent = true })
+    --         vim.keymap.set('i', '<S-Right>', '<Plug>(copilot-accept-line)', { silent = true })
+    --     end,
+    --     opts = {}
+    -- },
+
     -- Codeium AI
     {
         "Exafunction/windsurf.nvim",
